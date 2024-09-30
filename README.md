@@ -3,7 +3,8 @@ writing documents in LaTeX.
 
 1. Install Nix or NixOS.
 2. Clone this repository.
-3. Run "nix-shell" to install a basic LaTeX environment (it will take a while to download/build everything).
+3. Run "nix-build -o shell" to install a basic LaTeX environment (it will take a while to download/build everything).
+4. Run "./shell" to enter the environment.
 
 Now, you can type `make` to build everything or something like
 

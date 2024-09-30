@@ -16,12 +16,11 @@ let
       setspace;
   });
 
-  buildInputs = [ tex pkgs.gnumake ];
-
-  bashrc = pkgs.stdenvNoCC.mkDerivation {
-    name = "bashrc.sh";
+in
+  pkgs.stdenvNoCC.mkDerivation {
+    name = "shell";
     dontUnpack = "true";
-    inherit buildInputs;
+    buildInputs = [ tex pkgs.gnumake ];
 
     builder = builtins.toFile "builder.sh" ''
       source $stdenv/setup
@@ -32,24 +31,10 @@ let
         for var in PATH SHELL
         do echo "declare -x $var=\"''${!var}\""
         done
-        echo "declare -x PS1='\n\[\033[1;32m\][nix-shell:\w]\$\[\033[0m\] '"
+        echo "declare -x PS1='\n\033[1;32m[nix-shell:\w]\$\033[0m '"
+        echo "exec \"$SHELL\" --norc --noprofile \"\$@\""
       } > "$out"
 
-    '';
-  };
-
-in
-
-  pkgs.stdenvNoCC.mkDerivation {
-    name = "shell";
-    dontUnpack = "true";
-    inherit buildInputs;
-    inherit bashrc;
-
-    builder = builtins.toFile "builder.sh" ''
-      source $stdenv/setup
-      eval $shellHook
-      echo "exec \"$SHELL\" --rcfile $bashrc --noprofile \"\$@\"" > $out
-      chmod a+x $out
+      chmod a+x "$out"
     '';
   }
