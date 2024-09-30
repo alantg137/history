@@ -5,4 +5,4 @@ clean:
 
 output/%.pdf: %.tex
 	mkdir -p output
-	pdflatex -output-directory=output $<
+	./shell pdflatex -output-directory=output $<
