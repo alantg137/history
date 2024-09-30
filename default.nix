@@ -22,13 +22,16 @@ in
     dontUnpack = "true";
     buildInputs = [ tex pkgs.gnumake ];
 
+    # prevent nixpkgs from being garbage-collected
+    inherit nixpkgs;
+
     builder = builtins.toFile "builder.sh" ''
       source $stdenv/setup
       eval $shellHook
 
       {
         echo "#!$SHELL"
-        for var in PATH SHELL
+        for var in PATH SHELL nixpkgs
         do echo "declare -x $var=\"''${!var}\""
         done
         echo "declare -x PS1='\n\033[1;32m[nix-shell:\w]\$\033[0m '"
