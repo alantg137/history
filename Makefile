@@ -1,5 +1,5 @@
-all: output/hello.pdf output/mla_example.pdf
-
+all: output/hello.pdf output/mla_example.pdf output/s.pdf output/poker.pdf
+     
 clean:
 	rm output -r
 

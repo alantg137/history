@@ -1,0 +1,102 @@
+\documentclass[12pt]{article}
+
+\begin{document}
+\title{Ultrasound and buzzer}
+\maketitle
+\section{Buzzer}
+Hi! this section is about progamming buzzers.
+First connect the buzzer to the pico.
+Then Import time.
+Define the buzzer pin in the program like this:
+\begin{verbatim}
+buzzer = machine.PWM(machine.Pin((the pin of your buzzer,machine.Pin.OUT))
+\end{verbatim}
+After that start your loop.
+Your program should look something like this:
+\begin{verbatim}
+import time
+buzzer = machine.PWM(machine.Pin(7,machine.Pin.OUT))
+
+while True:
+\end{verbatim}
+Then set your frequency and loudness like this:
+\begin{verbatim}
+buzzer.freq(the frequency you want)
+buzzer.duty_u16(the volume from 0-65535)
+time.sleep_ms(5)
+buzzer.duty_u16(0)
+\end{verbatim}
+Actually 65535/2 is the loudest you can get because you need some time it is off.
+The loudness command just says how long it is on.
+Remember to indent your lines!
+The program should look like this:
+\begin{verbatim}
+import time
+buzzer = machine.PWM(machine.Pin(7,machine.Pin.OUT))
+
+while True:
+    buzzer.freq(100)
+    buzzer.duty_u16(100)
+    time.sleep_ms(5)
+    buzzer.duty_u16(0)
+\end{verbatim}
+And it works!!
+\section{Ultrasound}
+Connect the pico to the ultrasound.
+For this you also import time.
+Define your trigger and echo like this:
+\begin{verbatim}
+trg = machine.Pin(your pin,machine.Pin.OUT)
+echo = machine.Pin(your pin,machine.Pin.IN)
+\end{verbatim}
+Make sure to connect echo and trg to different yellow pins.
+Start your loop.
+Turn it off for 2 microseconds, on for 10 microseconds, off like this:
+\begin{verbatim}
+    trg.value(0)
+    time.sleep_us(2)
+    trg.value(1)
+    time.sleep_us(10)
+    trg.value(0)
+\end{verbatim}
+This will get it to shoot out ultrasound which will bounce back.
+Then do this:
+\begin{verbatim}
+    while echo.value() == 0:
+        pass
+    t1 = time.ticks_us()
+    while echo.value() == 1:
+        pass
+    t2 = time.ticks_us()
+\end{verbatim}
+This gets the pulse and sets two variables where the 2nd one - the 1st one is the distance
+Then you print the difference of the two variables like this:
+\begin{verbatim}
+print(time.ticks_diff(t2,t1)
+\end{verbatim}
+This prints the difference of t2 - t1.
+Then add a 1 second sleep at the end so that it doesn't print too fast.
+The program should be like this:
+\begin{verbatim}
+import time
+trg = machine.Pin(22,machine.Pin.OUT)
+echo = machine.Pin(21,machine.Pin.IN)
+while True:
+    trg.value(0)
+    time.sleep_us(2)
+    trg.value(1)
+    time.sleep_us(10)
+    trg.value(0)
+
+    while echo.value() == 0:
+        pass
+    t1 = time.ticks_us()
+    while echo.value() == 1:
+        pass
+    t2 = time.ticks_us()
+
+    print(time.ticks_diff(t2,t1))
+    time.sleep(1)
+\end{verbatim}
+The program should print out a bunch of numbers which are the distance of the object.
+\end{document}
