@@ -4,10 +4,37 @@
 \title{Poker Probabilities}
 \author{Alan Grayson}
 \maketitle
+
 \section*{Introduction}
+
 Hi! This article is about finding the probabilities for getting each kind of poker hand. 
 We will assume a poker hand is five different cards taken from a complete shuffled 52-card deck. 
+
 \section{Two of a kind}
+
+In poker if you have two and only two cards that are the same number in your hand, that is a two of a kind.
+For example if you have an 10 of diamonds, a 10 of hearts, a jack of clubs, a king of hearts, and an ace of spades then you have two of a kind.
+To figure out the probability you first need to know how many ways are there to get two of a kind.
+We'll arrange the cards so that you have the double first.
+
+For the first card you can have anything so there are $52$ possibilities.
+
+For the second card it has to be the same so there is one for every other suit you didn't use. $4 - 1 = 3$ possibilities.
+
+For the third card it can be anything as long as its not the same number so you woundn't get three of a kind. $52 - 4 = 48$ possibilities
+
+The fourth card can be any number that didn't appear yet so $44$ possibilities.
+
+For the last card, you can have any number that didn't appear so $40$ possibilities.
+You have two ways to rearrange the double and six ways to rearrange it.
+So in total you have 
+
+\begin{equation} 
+52\cdot3\cdot48\cdot44\cdot40\over2\cdot6
+\end{equation}
+
+
+
 
 \end{document}
  
