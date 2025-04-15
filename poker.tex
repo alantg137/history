@@ -1,4 +1,5 @@
 \documentclass[12pt]{article}
+\usepackage{hyperref}
 
 \begin{document}
 \title{Poker Probabilities}
@@ -18,7 +19,7 @@ deck - you have $52 \cdot 51 \cdot 50 \cdot 49 \cdot 48$.  You still
 need to divide by 5! because order doesn't matter. So you have,
 
 
-\begin{equation}
+\begin{equation}\label{total hands}
 {52 \cdot 51 \cdot 50 \cdot 49 \cdot 48 \over 5!} = 2596980 \hbox{ total hands}
 \end{equation}
 \section{Two of a kind}
@@ -45,10 +46,10 @@ So in total you have
 \end{equation}
 
 
-Now you take the amount of ways and divide by the total amount of hands (1).
+Now you take the amount of ways and divide by the total amount of hands (\ref{total hands}).
 
 \begin{equation}
-{1098240 \over 2596980} = {352 \over 833} = \hbox{ about } 42.26\% \hbox{ chance to get an two of an kind}
+{1098240 \over 2596980} = {352 \over 833} \approx  42.26\% \hbox{ chance to get an two of an kind}
 \end{equation}
 
 \section{Two Pair}
@@ -77,10 +78,10 @@ So you have
 {52 \cdot 3 \cdot 48 \cdot 3 \cdot 44 \over 8} = 123552 \hbox{ ways}
 \end{equation}
 
-divide that by the total amount of hands (1) and you get
+divide that by the total amount of hands (\ref{total hands}) and you get
 
 \begin{equation}
-{123552 \over 2598960} = {198 \over 4165} = \hbox{ about } 4.75\% \hbox{ chance to get an two pair}
+{123552 \over 2598960} = {198 \over 4165} \approx 4.75\% \hbox{ chance to get an two pair}
 \end{equation}
 
 \section{Three of a kind}
@@ -104,9 +105,42 @@ You have
 \begin{equation}
   {52 \cdot 3 \cdot 2 \cdot 48 \cdot 44 \over 6  \cdot 2} = 54912 \hbox{ total ways}
 \end{equation}
-Then you divide it by the total amount of ways (1) and you get
+Then you divide it by the total amount of ways (\ref{total hands}) and you get
 \begin{equation}
-  {54912 \over 2598960} = {88\over4165} = \hbox{ about } 2.11\% \hbox{ chance to get an three of a kind}
+  {54912 \over 2598960} = {88\over4165} \approx 2.11\% \hbox{ chance to get an three of a kind}
 \end{equation}
 \section{Straight}
+A straight is where you have 5 consecutive cards regardless of the
+suit.\footnote{Actually, if they are all the same suit, it would be a
+straight flush and wouldn't be counted as a straight.}
+
+To figure out how many ways there are to get a straight, you take the product of how many ways there are for each card.
+
+We'll organize the cards so that it is smallest to we'll largest.
+
+The ace can be an 1 or an 14 but not both so the first card can be from ace to $ 14 - 4 = 10$ .
+
+The first card can also be of any suit, so $ 10 * 4 = 40 $.
+
+The rest of the card all are one bigger so 4 ways for the rest of the cards.
+
+However if all the cards are of the same suit, it would be a straight flush.
+
+The first card has $ 40 $ too, but the rest just have one way.
+
+That means you subract $  40 $ from the total amount of ways.
+
+You have
+\begin{equation}
+  40 * 4 * 4 * 4 * 4 - 40 = 10200
+\end{equation}
+
+Then you divide it by the total amount of hands (\ref{total hands}).
+
+You have
+
+\begin{equation}
+  {10200 \over 2598960} = {5 \over 1274} \approx 0.392\% \hbox{chance to get an straight!!}
+\end{equation}
+
 \end{document}
