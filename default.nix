@@ -13,7 +13,8 @@ let
   tex = (pkgs.texlive.combine {
     inherit (pkgs.texlive) scheme-medium
       wrapfig amsmath ulem hyperref capt-of
-      setspace;
+      setspace
+      stackengine tabstackengine xcolor;
   });
 
 in

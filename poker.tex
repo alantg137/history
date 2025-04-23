@@ -1,10 +1,31 @@
 \documentclass[12pt]{article}
+
 \usepackage{hyperref}
+\usepackage{tabstackengine,xcolor,rotating}
+
+\newcommand\blackcard[2]{%
+  \begingroup\fboxsep=0pt\relax
+  \fbox{\tabbedCenterstack{%
+  \scriptsize$#2$ && \\&\makebox[10pt]{#1}&\\&
+  &\rotatebox[origin=c]{180}{\scriptsize$#2$}}}%
+  \endgroup}
+\newcommand\redcard[2]{%
+  \begingroup\fboxsep=0pt\relax
+  \fbox{\color{red}\tabbedCenterstack{%
+  \scriptsize$#2$ && \\&\makebox[10pt]{#1}&\\&&\rotatebox[origin=c]{180}{\scriptsize$#2$}}}%
+  \endgroup}
 
 \begin{document}
 \title{Poker Probabilities}
 \author{Alan Grayson}
 \maketitle
+
+\blackcard{10}{\clubsuit}
+\blackcard{J}{\clubsuit}
+\blackcard{Q}{\clubsuit}
+\blackcard{K}{\clubsuit}
+\blackcard{A}{\clubsuit}
+
 
 \section*{Introduction}
 
@@ -12,7 +33,8 @@ Hi! This article is about finding the probabilities for getting each kind of pok
 We will assume a poker hand is five cards taken from a complete shuffled 52-card deck.
 \section{Total amount of poker hands}
 To figure out probability of getting a hand in poker, you need to take the amount of ways to get the hand and divide it by the total amount of hands.
-
+In this section, We'll figure out how many total hands there are in poker.
+\\\\
 Since the only rule is that there will not be two cards that are
 exactly the same - because two king of clubs can't be in one complete
 deck - you have $52 \cdot 51 \cdot 50 \cdot 49 \cdot 48$.  You still
@@ -25,7 +47,16 @@ need to divide by 5! because order doesn't matter. So you have,
 \section{Two of a kind}
 
 In poker if you have two and only two cards that are the same number in your hand, that is a two of a kind.
-For example if you have an 10 of diamonds, a 10 of hearts, a jack of clubs, a king of hearts, and an ace of spades then you have two of a kind.
+For example if you have
+
+\redcard{10}{\diamondsuit}
+\redcard{10}{\heartsuit}
+\blackcard{J}{\clubsuit}
+\blackcard{K}{\clubsuit}
+\blackcard{A}{\spadesuit}
+\\\\
+
+then you hand contains an two of an kind(two tens).
 To figure out the probability you first need to know how many ways are there to get two of a kind.
 We'll arrange the cards so that you have the double first.
 
@@ -140,7 +171,65 @@ Then you divide it by the total amount of hands (\ref{total hands}).
 You have
 
 \begin{equation}
-  {10200 \over 2598960} = {5 \over 1274} \approx 0.392\% \hbox{chance to get an straight!!}
+  {10200 \over 2598960} = {5 \over 1274} \approx 0.392\% \hbox{ chance to get an straight!!}
+\end{equation}
+
+\section{Flush}
+
+If you have five cards of the same suit, Then you have an flush.
+
+For example, if you had
+
+\redcard{5}{\heartsuit}
+\redcard{7}{\heartsuit}
+\redcard{9}{\heartsuit}
+\redcard{J}{\heartsuit}
+\redcard{A}{\heartsuit}
+\\\\
+
+they are all hearts, so it would be a flush.
+
+First card can be anything, so $52$ ways.
+
+Second card is the same suit, so $11$ ways.r
+
+Third card is the same suit, so $10$ ways.
+
+Fourth card is the same suit, so $9$ ways.
+
+Last card is the same suit, so $8$ ways.
+
+Order doesn't matter so 5! ways to organize.
+
+Divide it by total amount of hands(\ref{total hands}) and you have
+
+\begin{equation}
+  {52 \cdot 11 \cdot 10 \cdot 9 \cdot 8} \over {2598960 \cdot 5!} = {33 \over 33320} \approx 0.093\%
+\end{equation}
+\section{Full house}
+A Full house is a two of a kind and a three of a kind.
+\\\\
+\redcard{5}{\heartsuit}
+\blackcard{5}{\clubsuit}
+\blackcard{9}{\clubsuit}
+\redcard{9}{\heartsuit}
+\blackcard{9}{\spadesuit}
+We'll arrange it so the three of an kind is first.
+The first card can be anything, so $52$ ways.
+
+The second card is the same, so $3$ ways.
+
+The third card is also the same, so $2$ ways.
+
+The fourth card can be any new number, so $48$ ways.
+
+The last card is the same as the fourth card, so $3$ ways.
+
+There are 3! ways to rearrange the three of an kind and 2! ways to rearrange the pair.
+
+You have
+\begin{equation}
+  {52 \cdot 3 \cdot 2 \cdot 48 \cdot 3 \over 3! \cdot 2! \cdot 2598960} = {6 \over 4165} /approx 0.14\%
 \end{equation}
 
 \end{document}
