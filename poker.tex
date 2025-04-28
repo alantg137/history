@@ -173,7 +173,7 @@ You have
 \begin{equation}
   {10200 \over 2598960} = {5 \over 1274} \approx 0.392\% \hbox{ chance to get an straight!!}
 \end{equation}
-
+0.392
 \section{Flush}
 
 If you have five cards of the same suit, Then you have an flush.
@@ -268,7 +268,7 @@ So you have
 
 In poker, the best possible kind of hand is a straight flush \footnote{royal flushes are actually just the best straight flushes}
 
-They are when you have a straight of same suit.
+They are when you have a straight of same suit.0.198
 
 Organize it so the smallest card is first.
 
@@ -288,5 +288,15 @@ A royal flush, would have only four ways to start and has $0.00015\%$ chancce.
 \section{High card}
 \redcard{7}{\heartsuit}
 \redcard{8}{\diamondsuit}
+\blackcard{10}{\clubsuit}
+\redcard{J}{\heartsuit}
+\blackcard{K}{\spadesuit}
 If you don't have anything in poker, that is an high card.
+
+You just take 100\% and subtract by all the other hands.
+
+You have
+\begin{equation}
+  100 - 42.26 - 4.75 - 2.11 - 0.392 - 0.198 - 0.14 - 0.024 - 0.0015 \approx 50.1245 \%
+\end{equation}
 \end{document}
