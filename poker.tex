@@ -191,20 +191,20 @@ they are all hearts, so it would be a flush.
 
 First card can be anything, so $52$ ways.
 
-Second card is the same suit, so $11$ ways.r
+Second card is the same suit, so $12$ ways.
 
-Third card is the same suit, so $10$ ways.
+Third card is the same suit, so $11$ ways.
 
-Fourth card is the same suit, so $9$ ways.
+Fourth card is the same suit, so $10$ ways.
 
-Last card is the same suit, so $8$ ways.
+Last card is the same suit, so $9$ ways.
 
 Order doesn't matter so 5! ways to organize.
 
 Divide it by total amount of hands(\ref{total hands}) and you have
 
 \begin{equation}
-  {52 \cdot 11 \cdot 10 \cdot 9 \cdot 8} \over {2598960 \cdot 5!} = {33 \over 33320} \approx 0.093\%
+  {52 \cdot 12 \cdot 11 \cdot 10 \cdot 9} \over {2598960 \cdot 5!} = {33 \over 16660} \approx 0.198\%
 \end{equation}
 \section{Full house}
 A Full house is a two of a kind and a three of a kind.
@@ -215,6 +215,7 @@ A Full house is a two of a kind and a three of a kind.
 \redcard{9}{\heartsuit}
 \blackcard{9}{\spadesuit}
 We'll arrange it so the three of an kind is first.
+
 The first card can be anything, so $52$ ways.
 
 The second card is the same, so $3$ ways.
@@ -229,7 +230,33 @@ There are 3! ways to rearrange the three of an kind and 2! ways to rearrange the
 
 You have
 \begin{equation}
-  {52 \cdot 3 \cdot 2 \cdot 48 \cdot 3 \over 3! \cdot 2! \cdot 2598960} = {6 \over 4165} /approx 0.14\%
+  {52 \cdot 3 \cdot 2 \cdot 48 \cdot 3 \over 3! \cdot 2! \cdot 2598960} = {6 \over 4165} \approx 0.14\%
 \end{equation}
+\section{Four of an kind}
 
+\blackcard{5}{\spadesuit}
+\blackcard{5}{\clubsuit}
+\redcard{5}{\heartsuit}
+\redcard{5}{\diamondsuit}
+\redcard{A}{\heartsuit}
+A four of an kind is when you have four of 1 number.
+\\\\
+We'll arrange it so you have the 4 of a kind first.
+
+The first card can be anything, so $52$ ways.
+
+The second card has to be the same number, so 3 ways.
+
+The third card also has to be the same number, so 2 ways.
+
+The fourth card also has to be the same number, so 1 way.
+
+The last card can be any new number, so 48 ways.
+
+4! ways to rearrange it.
+
+So you have
+\begin{equation}
+  {52 \cdot 3 \cdot 2 \cdot 1 \cdot 48 \over 2598960 /cdot 4!} = 1 \over 4165 \approx 0.024 \% \hbox{!}
+\end{equation}
 \end{document}
